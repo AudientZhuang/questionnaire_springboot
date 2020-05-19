@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zqu.yiban.questionnaire.mapper.TeacherMapper">
+
+
+
+    <select id="queryClassTeacherBySnoAndTno" resultType="com.zqu.yiban.questionnaire.entity.Teacher">
+        SELECT
+            t_no,
+            t_name
+        FROM
+            ( SELECT s_class FROM student WHERE s_no = #{sNo} ) s
+        LEFT JOIN (
+            SELECT
+                t.t_no,
+                t.t_name,
+                s_class
+            FROM
+                teacher AS t
+                LEFT JOIN class AS c ON c.t_no = t.t_no
+            WHERE
+            t.t_no = #{tNo}
+        ) ct ON s.s_class = ct.s_class
+    </select>
+
+    <select id="queryInsitituteTeacherBySnoAndTno" resultType="com.zqu.yiban.questionnaire.entity.Teacher">
+        SELECT
+            t_no,
+            t_name
+        FROM
+            ( SELECT s_institute FROM student WHERE s_no = #{sNo} ) s
+            LEFT JOIN (
+            SELECT
+                t.t_no,
+                t.t_name,
+                i.s_institute
+            FROM
+                teacher AS t
+                LEFT JOIN institute AS i ON i.t_no = t.t_no
+            WHERE
+            t.t_no = #{tNo}
+        ) it ON s.s_institute  = it.s_institute
+    </select>
+    <select id="queryDomitoryTeacherBySnoAndTno" resultType="com.zqu.yiban.questionnaire.entity.Teacher">
+        SELECT
+            t_no,
+            t_name
+        FROM
+            ( SELECT d_name FROM student WHERE s_no = #{sNo} ) s
+            LEFT JOIN (
+            SELECT
+                t.t_no,
+                t.t_name,
+                d.d_name
+            FROM
+                teacher AS t
+                LEFT JOIN dormitory AS d ON d.t_no = t.t_no
+            WHERE
+            t.t_no = #{tNo}
+	    ) dt ON s.d_name  = dt.d_name
+    </select>
+</mapper>
