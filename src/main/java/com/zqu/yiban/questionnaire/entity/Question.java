@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @TableName(value = "question")
 public class Question implements Serializable {
-    int q_no;   //问题编号
-    String q_content;   //问题内容
-    int q_type; //问题类型
+    int qNo;   //问题编号
+    String qContent;   //问题内容
+    int qType; //问题类型
 }
