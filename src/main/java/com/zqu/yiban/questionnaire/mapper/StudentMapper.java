@@ -9,6 +9,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Mapper
 public interface StudentMapper extends BaseMapper<Student> {
+    public Teacher getClassTeacher(@Param("s_no") String s_no) throws Exception;
+
+    public List<Teacher> getInstituteTeacher(@Param("s_no") String s_no) throws Exception;
+
+    public List<Teacher> getDormitoryTeacher(@Param("s_no") String s_no) throws Exception;
+
+
+
 
 }

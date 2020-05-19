@@ -17,4 +17,21 @@ import java.util.List;
 @Service
 public class StudentServiceImpl extends ServiceImpl<StudentMapper,Student> implements StudentService {
 
+    @Autowired
+    private StudentMapper studentMapper;
+
+    @Override
+    public Teacher getClassTeacher(String s_no) throws Exception {
+        return studentMapper.getClassTeacher(s_no);
+    }
+
+    @Override
+    public List<Teacher> getInstituteTeacher(String s_no) throws Exception {
+        return studentMapper.getInstituteTeacher(s_no);
+    }
+
+    @Override
+    public List<Teacher> getDormitoryTeacher(String s_no) throws Exception {
+        return studentMapper.getDormitoryTeacher(s_no);
+    }
 }

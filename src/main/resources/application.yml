@@ -1,9 +1,9 @@
 spring:
   datasource:
     username: root
-    password: admin
+    password: ZQU.1Ban!JiShuBu
     #数据库url
-    url: jdbc:mysql://localhost:3306/taquiz?serverTimezone=GMT%2B8
+    url: jdbc:mysql://39.108.112.31:3306/taquiz?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
     #Druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -56,3 +56,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true  #开启驼峰命名规则
     call-setters-on-nulls: true #查询数据为空时字段返回null
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.zqu.yiban.questionnaire
+
+
+debug: true

@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName(value = "teacher")
 public class Teacher {
-    String t_no;   //老师工号
-    String t_name;  //老师姓名
+    String tNo;   //老师工号
+    String tName;  //老师姓名
 }

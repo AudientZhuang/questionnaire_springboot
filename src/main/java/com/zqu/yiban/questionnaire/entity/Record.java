@@ -16,10 +16,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @TableName(value = "record")
 public class Record implements Serializable {
-    String s_no;   //学生学号
-    String s_name;  //学生姓名
-    String t_no;   //老师工号
-    String t_name;  //老师姓名
-    String q_answer;   //答案
-    int t_type;     //老师类型
+    String sNo;   //学生学号
+    String sName;  //学生姓名
+    String tNo;   //老师工号
+    String tName;  //老师姓名
+    String qAnswer;   //答案
+    int tType;     //老师类型
 }

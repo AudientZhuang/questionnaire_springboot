@@ -8,5 +8,9 @@ import com.zqu.yiban.questionnaire.entity.Teacher;
 import java.util.List;
 
 public interface StudentService extends IService<Student> {
+    public Teacher getClassTeacher(String s_no) throws Exception;
 
+    public List<Teacher> getInstituteTeacher(String s_no) throws Exception;
+
+    public List<Teacher> getDormitoryTeacher(String s_no) throws Exception;
 }

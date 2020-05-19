@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName("student")
 public class Student {
-    String s_no;   //学生学号
-    String s_name;  //学生姓名
-    String s_password;  //学生密码
-    String s_class;    //班级
-    String s_institute;    //学院
-    String d_name;  //宿舍名
+    String sNo;   //学生学号
+    String sName;  //学生姓名
+    String sPassword;  //学生密码
+    String sClass;    //班级
+    String sInstitute;    //学院
+    String dName;  //宿舍名
 }
