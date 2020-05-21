@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8081
 spring:
   datasource:
     username: root
@@ -57,8 +57,10 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true  #开启驼峰命名规则
     call-setters-on-nulls: true #查询数据为空时字段返回null
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.zqu.yiban.questionnaire
+logging:
+  file:
+    path: /usr/local/application/questionnaire/backend
+    name: questionnaire-log.log
 
-
-debug: true

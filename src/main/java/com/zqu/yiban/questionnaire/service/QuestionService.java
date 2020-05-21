@@ -8,4 +8,5 @@ import java.util.List;
 public interface QuestionService extends IService<Question> {
     List<Question> queryClassTeacherQuestion();
     List<Question> gueryCounselorQuestion();
+    int countQuestionByTType(Integer type);
 }

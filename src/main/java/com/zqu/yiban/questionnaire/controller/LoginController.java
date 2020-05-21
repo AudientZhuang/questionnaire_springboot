@@ -1,28 +1,25 @@
 package com.zqu.yiban.questionnaire.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+
 import com.zqu.yiban.questionnaire.common.Result;
-import com.zqu.yiban.questionnaire.common.ResultCode;
 import com.zqu.yiban.questionnaire.entity.Student;
 import com.zqu.yiban.questionnaire.service.StudentService;
 import com.zqu.yiban.questionnaire.utils.EncryptUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Map;
 
 
 @RestController
 @Slf4j
+@CrossOrigin
 @RequestMapping("/api/user")
 public class LoginController {
 
@@ -36,15 +33,14 @@ public class LoginController {
      * @return
      */
     @PostMapping(value = "/login")
-    public Result login(@RequestParam Map<String, String> map, HttpServletRequest httpServletRequest) {
+    public Result login(@RequestBody  Map<String,String> map, HttpServletRequest httpServletRequest) {
 
-        String account = map.get("username");   //学号
-        String password = map.get("password");  //密码
-
-        if (account == null || password == null || "".equals(account) || "".equals(password)) { //判断前端发送的学号密码是否为空
+        String account = map.get("username");
+        String password = map.get("password");
+        //判断前端发送的学号密码是否为空
+        if (StringUtils.isEmpty(account) || StringUtils.isEmpty(password)) {
             return new Result(HttpStatus.UNAUTHORIZED.value(), "学号密码不能为空",null);
         }
-
         Student student = studentService.login(account,EncryptUtils.getEncryption(password));  //通过学号密码查询学生信息
 
         if (student != null) {  //查询得到学生
@@ -64,15 +60,15 @@ public class LoginController {
      * @param map
      * @return
      */
-    @PutMapping(value = "/change")
-    public Result changePassword(@RequestParam Map<String, String> map) throws Exception {
+    @PutMapping(value = "/changePsd")
+    public Result changePassword(@RequestBody Map<String, String> map) throws Exception {
 
         String s_no = map.get("username");  //获取学号
         String oldPassword = map.get("oldPassword");    //获取旧密码
         String newPassword = map.get("newPassword");    //获取新密码
         String sureNewPassword = map.get("sureNewPassword");    //获取确认密码
 
-        if (oldPassword == null || "".equals(oldPassword) || newPassword == null || "".equals(newPassword) || sureNewPassword == null || "".equals(sureNewPassword)) {
+        if (StringUtils.isEmpty(oldPassword) || StringUtils.isEmpty(newPassword) || StringUtils.isEmpty(sureNewPassword)) {
             //旧密码、新密码、确认密码都不能为空
             return new Result(HttpStatus.UNAUTHORIZED.value(), "密码不能为空",null);
         }
@@ -110,8 +106,10 @@ public class LoginController {
             session.removeAttribute("s_no");
             session.removeAttribute("s_name");
             session.invalidate();
+            return new Result(HttpStatus.OK.value(), "请求成功", null);
+        } else {
+            return new Result(HttpStatus.UNAUTHORIZED.value(), "不是登录状态", null);
         }
-        return new Result(HttpStatus.OK.value(), "请求成功", null);
     }
 
 }

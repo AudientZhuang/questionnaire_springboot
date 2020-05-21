@@ -26,4 +26,10 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
                 .eq("q_type", TeacherTypeEnum.COUNSEL_TEACHER.getType());
         return this.list(queryWrapper);
     }
+
+    @Override
+    public int countQuestionByTType(Integer type) {
+        QueryWrapper<Question>queryWrapper = new QueryWrapper<Question>().eq("q_type", type);
+        return this.count(queryWrapper);
+    }
 }

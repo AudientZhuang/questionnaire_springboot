@@ -23,10 +23,7 @@ public class LoginHandleIntercepter implements HandlerInterceptor {
         if (url.indexOf("login") > 0 || url.indexOf("changePsd") > 0) {
             return true;
         }
-
-        String basePath = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + 80 + "/";
-        httpServletResponse.sendRedirect(basePath);
-        return false;
+        throw new Exception("拦截错误");
     }
 
     @Override
