@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin
 @Slf4j
 @RequestMapping("/api/record")
 public class RecordController {

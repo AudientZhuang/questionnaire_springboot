@@ -39,7 +39,7 @@ public class RecordServiceImpl extends ServiceImpl<RecordMapper, Record> impleme
             return false;
         }
 
-        QueryWrapper<Record> queryWrapper = new QueryWrapper<Record>().eq("s_no" , record.getSNo()).eq("t_no", record.getTNo());
+        QueryWrapper<Record> queryWrapper = new QueryWrapper<Record>().eq("s_no" , record.getSNo()).eq("t_no", record.getTNo()).eq("t_type", record.getTType());
         if (this.list(queryWrapper).size() > 0) {
             return false;
         }
